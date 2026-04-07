@@ -2194,33 +2194,132 @@
 
 <div class="page" id="page-ch5">
 <div class="chapter-layout">
-  <div class="chapter-header"><div class="chapter-eyebrow">📦 Chapter 5 of 8</div><h1 class="chapter-title" style="background:linear-gradient(135deg,#6C63FF,#EF476F);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Variables & Data 📦</h1><p class="chapter-intro">Programs need to remember things — your name, your score, your health points. Variables are labeled boxes that store information in RAM while your program runs.</p></div>
-  <div class="section"><h2>📦 Variables Are Labeled Boxes</h2>
-    <div class="code-editor"><div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">variables.py</div></div><div class="code-area"><span class="var">player_name</span> <span class="op">=</span> <span class="str">"Alex"</span>
-<span class="var">score</span> <span class="op">=</span> <span class="num">0</span>
-<span class="var">health</span> <span class="op">=</span> <span class="num">100</span>
-<span class="var">is_alive</span> <span class="op">=</span> <span class="kw">True</span>
-<span class="fn">print</span>(<span class="str">"Player:"</span>, <span class="var">player_name</span>)
-<span class="var">score</span> <span class="op">=</span> <span class="var">score</span> <span class="op">+</span> <span class="num">10</span>
-<span class="fn">print</span>(<span class="str">"New Score:"</span>, <span class="var">score</span>)</div></div>
-    <button class="run-btn" onclick="runCode('out-ch5-1',['Player: Alex','New Score: 10'])">▶ Run Code</button>
-    <div class="output-box" id="out-ch5-1"></div>
-    <div class="var-viz" style="margin-top:1.25rem">
-      <div class="var-box"><div class="vb-name">player_name</div><div class="vb-val">"Alex"</div><div class="vb-type">string</div></div>
-      <div class="var-box" style="border-color:var(--orange)"><div class="vb-name" style="background:var(--orange)">score</div><div class="vb-val">10</div><div class="vb-type">integer</div></div>
-      <div class="var-box" style="border-color:var(--teal)"><div class="vb-name" style="background:var(--teal);color:var(--darker)">health</div><div class="vb-val">100</div><div class="vb-type">integer</div></div>
-      <div class="var-box" style="border-color:var(--pink)"><div class="vb-name" style="background:var(--pink)">is_alive</div><div class="vb-val">True</div><div class="vb-type">boolean</div></div>
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">📦 Chapter 5 of 8</div>
+    <h1 class="chapter-title" style="background:linear-gradient(135deg,#6C63FF,#EF476F);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Variables & Data 📦</h1>
+    <p class="chapter-intro">Programs need to remember things. In this chapter you'll learn variables — and start building the <strong>Number Guessing Game</strong> you'll play in Chapter 8. Every example is a real piece of that game.</p>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(255,209,102,.1),rgba(255,107,53,.08));border:1px solid rgba(255,209,102,.25);border-radius:var(--radius);padding:1.1rem 1.4rem;margin-bottom:2rem;display:flex;align-items:center;gap:.9rem">
+    <div style="font-size:1.8rem">🎮</div>
+    <div>
+      <div style="font-weight:800;font-size:.9rem;color:var(--yellow)">Building the Guessing Game — Part 1 of 3</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:2px">Ch5 sets up variables → Ch6 adds decisions & loops → Ch7 wraps it in functions → Ch8: play!</div>
     </div>
   </div>
-  <div class="section"><h2>🏷️ Data Types</h2>
-    <div class="type-row"><div class="type-badge t-str">str = Text</div><div class="type-badge t-int">int = Whole Number</div><div class="type-badge t-float">float = Decimal</div><div class="type-badge t-bool">bool = True/False</div></div>
+
+  <div class="section">
+    <h2>📦 Variables — The Game's Memory</h2>
+    <p>Our guessing game needs to <strong>remember</strong> four things while it runs. Each lives in a <strong>variable</strong> — a labelled box in RAM.</p>
+    <div class="analogy">
+      <div class="analogy-label">🎯 Scoreboard Analogy</div>
+      <p>A basketball scoreboard has labelled slots: HOME = 84, AWAY = 79, QUARTER = 4. Each slot updates during the game. Variables work identically — labelled slots in memory that hold values and update as the program runs.</p>
+    </div>
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">game_variables.py — 🎮 Part 1: Setting Up</div></div>
+      <div class="code-area"><span class="cmt"># === GUESSING GAME — Step 1: The variables ===</span>
+<span class="var">secret_number</span> <span class="op">=</span> <span class="num">42</span>         <span class="cmt"># int — the number to guess</span>
+<span class="var">guesses_left</span>  <span class="op">=</span> <span class="num">10</span>         <span class="cmt"># int — how many tries remain</span>
+<span class="var">player_name</span>   <span class="op">=</span> <span class="str">"Alex"</span>     <span class="cmt"># str — who is playing</span>
+<span class="var">won</span>           <span class="op">=</span> <span class="kw">False</span>      <span class="cmt"># bool — have they won yet?</span>
+
+<span class="fn">print</span>(<span class="str">f"Welcome, {player_name}!"</span>)
+<span class="fn">print</span>(<span class="str">f"You have {guesses_left} guesses."</span>)
+<span class="fn">print</span>(<span class="str">f"Game won? {won}"</span>)</div>
+    </div>
+    <button class="run-btn" onclick="runCode('out-ch5-1',['Welcome, Alex!','You have 10 guesses.','Game won? False'])">▶ Run Code</button>
+    <div class="output-box" id="out-ch5-1"></div>
+    <p style="margin-top:1.25rem">Here's what those four variables look like in RAM:</p>
+    <div class="var-viz" style="margin-top:.75rem">
+      <div class="var-box"><div class="vb-name">secret_number</div><div class="vb-val">42</div><div class="vb-type">int</div></div>
+      <div class="var-box" style="border-color:var(--orange)"><div class="vb-name" style="background:var(--orange)">guesses_left</div><div class="vb-val">10</div><div class="vb-type">int</div></div>
+      <div class="var-box" style="border-color:var(--teal)"><div class="vb-name" style="background:var(--teal);color:var(--darker)">player_name</div><div class="vb-val">"Alex"</div><div class="vb-type">str</div></div>
+      <div class="var-box" style="border-color:var(--pink)"><div class="vb-name" style="background:var(--pink)">won</div><div class="vb-val">False</div><div class="vb-type">bool</div></div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="section">
+    <h2>🏷️ The Four Data Types in Our Game</h2>
+    <p>Each variable holds a <strong>different kind</strong> of data. Python has four main types:</p>
+    <div class="type-row">
+      <div class="type-badge t-str">str = Text</div>
+      <div class="type-badge t-int">int = Whole Number</div>
+      <div class="type-badge t-float">float = Decimal</div>
+      <div class="type-badge t-bool">bool = True/False</div>
+    </div>
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">types_in_game.py</div></div>
+      <div class="code-area"><span class="var">name</span>   <span class="op">=</span> <span class="str">"Alex"</span>   <span class="cmt"># str  — text, always in quotes</span>
+<span class="var">lives</span>  <span class="op">=</span> <span class="num">10</span>      <span class="cmt"># int  — whole number</span>
+<span class="var">ratio</span>  <span class="op">=</span> <span class="num">0.75</span>    <span class="cmt"># float — decimal</span>
+<span class="var">won</span>    <span class="op">=</span> <span class="kw">False</span>   <span class="cmt"># bool — True or False only</span>
+<span class="fn">print</span>(<span class="fn">type</span>(<span class="var">name</span>),  <span class="var">name</span>)
+<span class="fn">print</span>(<span class="fn">type</span>(<span class="var">lives</span>), <span class="var">lives</span>)
+<span class="fn">print</span>(<span class="fn">type</span>(<span class="var">ratio</span>), <span class="var">ratio</span>)
+<span class="fn">print</span>(<span class="fn">type</span>(<span class="var">won</span>),   <span class="var">won</span>)</div>
+    </div>
+    <button class="run-btn" onclick="runCode('out-ch5-2',["&lt;class 'str'&gt; Alex","&lt;class 'int'&gt; 10","&lt;class 'float'&gt; 0.75","&lt;class 'bool'&gt; False"])">▶ Run Code</button>
+    <div class="output-box" id="out-ch5-2"></div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="section">
+    <h2>⌨️ Getting the Player's Guess — input() + Type Casting</h2>
+    <p>Our game needs to ask the player for a guess. <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">input()</code> always returns a <strong>string</strong> — even if the player types a number. We convert it to an <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">int</code> using <strong>type casting</strong> so we can compare it to <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">secret_number</code>.</p>
+    <div class="analogy">
+      <div class="analogy-label">🎯 Currency Exchange Analogy</div>
+      <p>You have £10 but the shop only accepts dollars. You convert it at an exchange — same value, different format. <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">int()</code> does the same: same number, converted from string to integer.</p>
+    </div>
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">game_input.py — 🎮 Part 2: Getting a Guess</div></div>
+      <div class="code-area"><span class="cmt"># input() gives us a STRING — even "42" is text!</span>
+<span class="var">raw_guess</span> <span class="op">=</span> <span class="fn">input</span>(<span class="str">"Guess a number: "</span>)
+<span class="fn">print</span>(<span class="str">"Type before casting:"</span>, <span class="fn">type</span>(<span class="var">raw_guess</span>))
+<span class="cmt"># int() converts the string "42" → the number 42</span>
+<span class="var">guess</span> <span class="op">=</span> <span class="fn">int</span>(<span class="var">raw_guess</span>)
+<span class="fn">print</span>(<span class="str">"Type after casting: "</span>, <span class="fn">type</span>(<span class="var">guess</span>))
+<span class="fn">print</span>(<span class="str">"Your guess:"</span>, <span class="var">guess</span>)
+<span class="fn">print</span>(<span class="str">"One less:"</span>, <span class="var">guess</span> <span class="op">-</span> <span class="num">1</span>)</div>
+    </div>
     <div style="margin:1rem 0;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
-      <input type="text" id="input-name" placeholder="Enter your name..." style="background:var(--card2);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:10px 14px;color:var(--text);font-family:'Nunito';font-size:.9rem;outline:none;flex:1;min-width:160px">
-      <button class="run-btn" style="margin:0" onclick="runGreeting()">▶ Run</button>
+      <input type="number" id="input-guess-ch5" placeholder="Type any number..." min="1" max="100" style="background:var(--card2);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:10px 14px;color:var(--text);font-family:'Nunito';font-size:.9rem;outline:none;flex:1;min-width:160px">
+      <button class="run-btn" style="margin:0" onclick="runInputDemo()">▶ Run</button>
     </div>
     <div class="output-box" id="out-ch5-3"></div>
+    <div class="fun-fact">
+      <div class="fun-fact-icon">⚠️</div>
+      <p><strong>Why cast?</strong> If we skip <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">int()</code> and compare <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">"42" == 42</code>, Python says <strong>False</strong> — a string never equals an integer! Always cast input before comparing numbers.</p>
+    </div>
   </div>
-  <div class="quiz" id="quiz-5"><div class="quiz-q">🎯 What data type is the value "hello" in Python?</div><div class="quiz-opts"><div class="quiz-opt" onclick="answerQuiz('quiz-5',0,5)">A) int</div><div class="quiz-opt" onclick="answerQuiz('quiz-5',1,5)">B) float</div><div class="quiz-opt" onclick="answerQuiz('quiz-5',2,5)">C) str</div><div class="quiz-opt" onclick="answerQuiz('quiz-5',3,5)">D) bool</div></div><div class="quiz-feedback" id="qf-quiz-5"></div></div>
+
+  <div class="section-divider"></div>
+
+  <div class="section">
+    <h2>🔄 Updating Variables — Tracking Progress</h2>
+    <p>Variables change as the game runs. Every wrong guess drops <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">guesses_left</code> by one. When they win, <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">won</code> flips to <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">True</code>.</p>
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">game_update.py — 🎮 Part 3: Updating State</div></div>
+      <div class="code-area"><span class="var">guesses_left</span> <span class="op">=</span> <span class="num">10</span>
+<span class="var">won</span>          <span class="op">=</span> <span class="kw">False</span>
+<span class="fn">print</span>(<span class="str">f"Start:  guesses={guesses_left}, won={won}"</span>)
+<span class="var">guesses_left</span> <span class="op">=</span> <span class="var">guesses_left</span> <span class="op">-</span> <span class="num">1</span>
+<span class="fn">print</span>(<span class="str">f"After guess 1: guesses={guesses_left}"</span>)
+<span class="var">guesses_left</span> <span class="op">-=</span> <span class="num">1</span>   <span class="cmt"># shortcut!</span>
+<span class="fn">print</span>(<span class="str">f"After guess 2: guesses={guesses_left}"</span>)
+<span class="var">won</span> <span class="op">=</span> <span class="kw">True</span>
+<span class="fn">print</span>(<span class="str">f"Player won: {won}"</span>)</div>
+    </div>
+    <button class="run-btn" onclick="runCode('out-ch5-4',['Start:  guesses=10, won=False','After guess 1: guesses=9','After guess 2: guesses=8','Player won: True'])">▶ Run Code</button>
+    <div class="output-box" id="out-ch5-4"></div>
+    <div class="note-box">
+      <p>💡 <strong>Chapter 5 complete:</strong> We have all the variables the game needs — <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">secret_number</code>, <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">guesses_left</code>, <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">player_name</code>, <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">won</code> — and know how to get and update them. Chapter 6 adds the brain: decisions and the loop!</p>
+    </div>
+  </div>
+
+<div class="quiz" id="quiz-5"><div class="quiz-q">🎯 What data type is the value "hello" in Python?</div><div class="quiz-opts"><div class="quiz-opt" onclick="answerQuiz('quiz-5',0,5)">A) int</div><div class="quiz-opt" onclick="answerQuiz('quiz-5',1,5)">B) float</div><div class="quiz-opt" onclick="answerQuiz('quiz-5',2,5)">C) str</div><div class="quiz-opt" onclick="answerQuiz('quiz-5',3,5)">D) bool</div></div><div class="quiz-feedback" id="qf-quiz-5"></div></div>
 
   <div class="quiz" id="quiz-5b">
     <div class="quiz-q">🎯 What does this code print? <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">x = 5; x = x + 3; print(x)</code></div>
@@ -2273,30 +2372,131 @@
 
   <div class="ch-nav"><button class="ch-nav-btn" onclick="showChapter(4)">← Chapter 4</button><button class="ch-nav-btn next-btn" onclick="showChapter(6)">Chapter 6: Loops & Decisions →</button></div>
 </div>
-</div>
-
-<div class="page" id="page-ch6">
+</div><div class="page" id="page-ch6">
 <div class="chapter-layout">
-  <div class="chapter-header"><div class="chapter-eyebrow">🔄 Chapter 6 of 8</div><h1 class="chapter-title" style="background:linear-gradient(135deg,#06D6A0,#6C63FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Loops & Decisions 🔄</h1><p class="chapter-intro">Making decisions (if/else) and repeating things (loops) are two of the most powerful ideas in all of programming.</p></div>
-  <div class="section"><h2>🚦 If / Else — Making Decisions</h2>
-    <div class="code-editor"><div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">decisions.py</div></div><div class="code-area"><span class="var">score</span> <span class="op">=</span> <span class="num">85</span>
-<span class="kw">if</span> <span class="var">score</span> <span class="op">>=</span> <span class="num">90</span><span class="op">:</span>
-    <span class="fn">print</span>(<span class="str">"Amazing! A! 🌟"</span>)
-<span class="kw">elif</span> <span class="var">score</span> <span class="op">>=</span> <span class="num">80</span><span class="op">:</span>
-    <span class="fn">print</span>(<span class="str">"Great job! B! 👍"</span>)
-<span class="kw">else</span><span class="op">:</span>
-    <span class="fn">print</span>(<span class="str">"Keep studying!"</span>)</div></div>
-    <button class="run-btn" onclick="runCode('out-ch6-1',['Great job! B! 👍'])">▶ Run Code</button>
-    <div class="output-box" id="out-ch6-1"></div>
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">🔄 Chapter 6 of 8</div>
+    <h1 class="chapter-title" style="background:linear-gradient(135deg,#06D6A0,#6C63FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Loops & Decisions 🔄</h1>
+    <p class="chapter-intro">In Chapter 5 we set up the game's variables. Now we give it a <strong>brain</strong> — the decisions that give hints, and the loop that keeps playing until the game ends.</p>
   </div>
-  <div class="section"><h2>🔁 For Loops</h2>
-    <div class="code-editor"><div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">loops.py</div></div><div class="code-area"><span class="kw">for</span> <span class="var">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">6</span>)<span class="op">:</span>
-    <span class="fn">print</span>(<span class="str">"Lap number:"</span>, <span class="var">i</span>)
-<span class="fn">print</span>(<span class="str">"Race complete! 🏁"</span>)</div></div>
-    <button class="run-btn" onclick="runLoopDemo()">▶ Run Code</button>
+
+  <!-- GAME PROGRESS BANNER -->
+  <div style="background:linear-gradient(135deg,rgba(6,214,160,.1),rgba(108,99,255,.08));border:1px solid rgba(6,214,160,.25);border-radius:var(--radius);padding:1.1rem 1.4rem;margin-bottom:2rem;display:flex;align-items:center;gap:.9rem">
+    <div style="font-size:1.8rem">🎮</div>
+    <div>
+      <div style="font-weight:800;font-size:.9rem;color:var(--teal)">Building the Guessing Game — Part 2 of 3</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:2px">Adding the hint logic (if/elif/else) and the game loop (while) — the heart of the game</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: if/elif/else for hints -->
+  <div class="section">
+    <h2>🚦 If / Elif / Else — The Hint Machine</h2>
+    <p>Every guessing game needs to give a hint after each wrong guess: <em>too high</em>, <em>too low</em>, or <em>correct!</em> That's exactly what <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">if/elif/else</code> does — it checks a condition and runs different code depending on the result.</p>
+
+    <div class="analogy">
+      <div class="analogy-label">🎯 Thermostat Analogy</div>
+      <p>A thermostat checks: IF temperature &gt; 25°C → turn on AC. ELIF temperature &lt; 18°C → turn on heat. ELSE → do nothing. One check, three possible outcomes. Our game's hint logic works identically.</p>
+    </div>
+
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">game_hints.py — 🎮 Part 4: The Hint Logic</div></div>
+      <div class="code-area"><span class="var">secret_number</span> <span class="op">=</span> <span class="num">42</span>
+<span class="var">guess</span> <span class="op">=</span> <span class="num">67</span>          <span class="cmt"># pretend player guessed 67</span>
+
+<span class="cmt"># Three possible outcomes — only ONE block runs</span>
+<span class="kw">if</span> <span class="var">guess</span> <span class="op">==</span> <span class="var">secret_number</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"🎉 CORRECT! You win!"</span>)
+<span class="kw">elif</span> <span class="var">guess</span> <span class="op">></span> <span class="var">secret_number</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"📉 Too high! Try lower."</span>)
+<span class="kw">else</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"📈 Too low! Try higher."</span>)
+
+<span class="cmt"># Try changing guess to 42 or 15 — watch the output change!</span></div>
+    </div>
+    <button class="run-btn" onclick="runCode('out-ch6-1',['📉 Too high! Try lower.'])">▶ Run Code</button>
+    <div class="output-box" id="out-ch6-1"></div>
+
+    <div class="fun-fact">
+      <div class="fun-fact-icon">💡</div>
+      <p><strong>== vs =</strong> — a super common mistake! A single <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">=</code> assigns a value (<code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">x = 5</code>). A double <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'"">==</code> checks if two things are equal (<code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">x == 5</code>). Always use <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">==</code> inside if statements!</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 2: while loop — the game loop -->
+  <div class="section">
+    <h2>🔁 The While Loop — Keep Playing!</h2>
+    <p>One guess isn't a game. We need to keep asking until the player either wins or runs out of guesses. That's a <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">while</code> loop — it repeats as long as a condition stays True.</p>
+
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">game_loop.py — 🎮 Part 5: The Game Loop</div></div>
+      <div class="code-area"><span class="var">secret_number</span> <span class="op">=</span> <span class="num">42</span>
+<span class="var">guesses_left</span>  <span class="op">=</span> <span class="num">3</span>    <span class="cmt"># only 3 guesses in this demo</span>
+<span class="var">won</span>           <span class="op">=</span> <span class="kw">False</span>
+
+<span class="cmt"># Loop keeps running WHILE there are guesses AND not won</span>
+<span class="kw">while</span> <span class="var">guesses_left</span> <span class="op">></span> <span class="num">0</span> <span class="kw">and</span> <span class="kw">not</span> <span class="var">won</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">f"Guesses left: {guesses_left}"</span>)
+    <span class="var">guess</span> <span class="op">=</span> <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Your guess: "</span>))
+
+    <span class="kw">if</span> <span class="var">guess</span> <span class="op">==</span> <span class="var">secret_number</span><span class="op">:</span>
+        <span class="fn">print</span>(<span class="str">"🎉 CORRECT!"</span>)
+        <span class="var">won</span> <span class="op">=</span> <span class="kw">True</span>         <span class="cmt"># this stops the loop!</span>
+    <span class="kw">elif</span> <span class="var">guess</span> <span class="op">></span> <span class="var">secret_number</span><span class="op">:</span>
+        <span class="fn">print</span>(<span class="str">"📉 Too high!"</span>)
+    <span class="kw">else</span><span class="op">:</span>
+        <span class="fn">print</span>(<span class="str">"📈 Too low!"</span>)
+
+    <span class="var">guesses_left</span> <span class="op">-=</span> <span class="num">1</span>    <span class="cmt"># count down after each guess</span>
+
+<span class="cmt"># After the loop ends — show result</span>
+<span class="kw">if</span> <span class="var">won</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"🏆 You won!"</span>)
+<span class="kw">else</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">f"💀 Game over! It was {secret_number}."</span>)</div>
+    </div>
+    <p style="color:var(--muted);font-size:.85rem;margin:.5rem 0">Try it with simulated guesses — watch the loop count down:</p>
+    <button class="run-btn" onclick="runLoopDemo()">▶ Simulate 3 Guesses</button>
     <div class="output-box" id="out-ch6-2"></div>
     <div class="loop-viz" id="loop-viz" style="margin-top:1rem">
-      <div class="loop-item" id="li-1">1</div><div class="loop-item" id="li-2">2</div><div class="loop-item" id="li-3">3</div><div class="loop-item" id="li-4">4</div><div class="loop-item" id="li-5">5</div>
+      <div class="loop-item" id="li-1">3</div>
+      <div class="loop-item" id="li-2">2</div>
+      <div class="loop-item" id="li-3">1</div>
+      <div class="loop-item" id="li-4">0</div>
+      <div class="loop-item" id="li-5">💀</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 3: For loops — bonus concept -->
+  <div class="section">
+    <h2>🔢 For Loops — Counting Through Things</h2>
+    <p>Our game uses a <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">while</code> loop because we don't know in advance how many guesses it will take. But when you want to repeat something an exact number of times, a <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">for</code> loop is cleaner. We'll use one in Chapter 8 to show the guess history.</p>
+
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">game_history.py — 🎮 Part 6: Showing Guess History</div></div>
+      <div class="code-area"><span class="cmt"># Store past guesses in a list</span>
+<span class="var">past_guesses</span> <span class="op">=</span> [<span class="num">70</span>, <span class="num">35</span>, <span class="num">50</span>, <span class="num">42</span>]
+<span class="var">secret_number</span> <span class="op">=</span> <span class="num">42</span>
+
+<span class="fn">print</span>(<span class="str">"📋 Your guess history:"</span>)
+<span class="kw">for</span> <span class="var">i</span>, <span class="var">g</span> <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="var">past_guesses</span>, <span class="num">1</span>)<span class="op">:</span>
+    <span class="kw">if</span> <span class="var">g</span> <span class="op">></span> <span class="var">secret_number</span><span class="op">:</span>
+        <span class="var">hint</span> <span class="op">=</span> <span class="str">"too high"</span>
+    <span class="kw">elif</span> <span class="var">g</span> <span class="op"><</span> <span class="var">secret_number</span><span class="op">:</span>
+        <span class="var">hint</span> <span class="op">=</span> <span class="str">"too low"</span>
+    <span class="kw">else</span><span class="op">:</span>
+        <span class="var">hint</span> <span class="op">=</span> <span class="str">"✅ correct!"</span>
+    <span class="fn">print</span>(<span class="str">f"  Guess {i}: {g} → {hint}"</span>)</div>
+    </div>
+    <button class="run-btn" onclick="runCode('out-ch6-3',['📋 Your guess history:','  Guess 1: 70 → too high','  Guess 2: 35 → too low','  Guess 3: 50 → too high','  Guess 4: 42 → ✅ correct!'])">▶ Run Code</button>
+    <div class="output-box" id="out-ch6-3"></div>
+
+    <div class="note-box">
+      <p>💡 <strong>What we've built in Ch5 + Ch6:</strong> Variables to store state ✅ &nbsp;|&nbsp; input() + type casting to get guesses ✅ &nbsp;|&nbsp; if/elif/else hint logic ✅ &nbsp;|&nbsp; while loop to keep playing ✅. In Chapter 7 we wrap it all into clean functions!</p>
     </div>
   </div>
   <div class="quiz" id="quiz-6"><div class="quiz-q">🎯 A loop that runs as long as a condition is True is called a...</div><div class="quiz-opts"><div class="quiz-opt" onclick="answerQuiz('quiz-6',0,6)">A) for loop</div><div class="quiz-opt" onclick="answerQuiz('quiz-6',1,6)">B) while loop</div><div class="quiz-opt" onclick="answerQuiz('quiz-6',2,6)">C) if loop</div><div class="quiz-opt" onclick="answerQuiz('quiz-6',3,6)">D) repeat loop</div></div><div class="quiz-feedback" id="qf-quiz-6"></div></div>
@@ -2356,18 +2556,223 @@
 
 <div class="page" id="page-ch7">
 <div class="chapter-layout">
-  <div class="chapter-header"><div class="chapter-eyebrow">⚙️ Chapter 7 of 8</div><h1 class="chapter-title" style="background:linear-gradient(135deg,#EF476F,#6C63FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Functions ⚙️</h1><p class="chapter-intro">Write code once, use it anywhere. Functions are the building blocks of every real program.</p></div>
-  <div class="section"><h2>📻 Define and Call Functions</h2>
-    <div class="code-editor"><div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">functions.py</div></div><div class="code-area"><span class="kw">def</span> <span class="fn">greet_player</span>(<span class="var">name</span>, <span class="var">level</span>)<span class="op">:</span>
-    <span class="fn">print</span>(<span class="str">"Welcome back,"</span>, <span class="var">name</span> <span class="op">+</span> <span class="str">"!"</span>)
-    <span class="fn">print</span>(<span class="str">"You are on Level"</span>, <span class="var">level</span>)
-
-<span class="fn">greet_player</span>(<span class="str">"Alex"</span>, <span class="num">5</span>)
-<span class="fn">greet_player</span>(<span class="str">"Jordan"</span>, <span class="num">12</span>)</div></div>
-    <button class="run-btn" onclick="runCode('out-ch7-1',['Welcome back, Alex!','You are on Level 5','Welcome back, Jordan!','You are on Level 12'])">▶ Run Code</button>
-    <div class="output-box" id="out-ch7-1"></div>
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">⚙️ Chapter 7 of 8</div>
+    <h1 class="chapter-title" style="background:linear-gradient(135deg,#EF476F,#6C63FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Functions ⚙️</h1>
+    <p class="chapter-intro">In Chapters 5 & 6 you built all the pieces of the guessing game. Now we wrap each piece into its own <strong>function</strong>, then snap them together into the complete working game you'll play in Chapter 8.</p>
   </div>
-  <div class="quiz" id="quiz-7"><div class="quiz-q">🎯 What keyword do you use to CREATE a function in Python?</div><div class="quiz-opts"><div class="quiz-opt" onclick="answerQuiz('quiz-7',0,7)">A) create</div><div class="quiz-opt" onclick="answerQuiz('quiz-7',1,7)">B) function</div><div class="quiz-opt" onclick="answerQuiz('quiz-7',2,7)">C) def</div><div class="quiz-opt" onclick="answerQuiz('quiz-7',3,7)">D) make</div></div><div class="quiz-feedback" id="qf-quiz-7"></div></div>
+
+  <div style="background:linear-gradient(135deg,rgba(239,71,111,.1),rgba(108,99,255,.08));border:1px solid rgba(239,71,111,.25);border-radius:var(--radius);padding:1.1rem 1.4rem;margin-bottom:2rem;display:flex;align-items:center;gap:.9rem">
+    <div style="font-size:1.8rem">🎮</div>
+    <div>
+      <div style="font-weight:800;font-size:.9rem;color:var(--pink)">Building the Guessing Game — Part 3 of 3</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:2px">Wrapping every piece into a function, then assembling the full game. Chapter 8 = play it!</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>1️⃣ show_welcome() — Your First Game Function</h2>
+    <p>A function is a <strong>named block of code</strong> you define once and call whenever you need it. Our first one prints the game's welcome screen.</p>
+    <div class="analogy">
+      <div class="analogy-label">🎯 TV Remote Analogy</div>
+      <p>Pressing volume-up always runs the same internal code. You don't rewire the TV each time. A function is that button — define once, call whenever needed.</p>
+    </div>
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">fn1_welcome.py — 🎮 Game Function 1</div></div>
+      <div class="code-area"><span class="kw">def</span> <span class="fn">show_welcome</span>(<span class="var">player_name</span>, <span class="var">max_guesses</span>)<span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"=============================="</span>)
+    <span class="fn">print</span>(<span class="str">"   🎮 NUMBER GUESSING GAME"</span>)
+    <span class="fn">print</span>(<span class="str">"=============================="</span>)
+    <span class="fn">print</span>(<span class="str">f"Welcome, {player_name}!"</span>)
+    <span class="fn">print</span>(<span class="str">f"Guess 1–100 in {max_guesses} tries. Good luck!"</span>)
+    <span class="fn">print</span>()
+
+<span class="fn">show_welcome</span>(<span class="str">"Alex"</span>, <span class="num">10</span>)</div>
+    </div>
+    <button class="run-btn" onclick="runCode('out-ch7-1',['==============================','   🎮 NUMBER GUESSING GAME','==============================','Welcome, Alex!','Guess 1–100 in 10 tries. Good luck!',''])">▶ Run Code</button>
+    <div class="output-box" id="out-ch7-1"></div>
+    <div class="fun-fact">
+      <div class="fun-fact-icon">💡</div>
+      <p><code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">player_name</code> and <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">max_guesses</code> are <strong>parameters</strong> — placeholders in the definition. <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">"Alex"</code> and <code style="background:var(--card2);padding:2px 6px;border-radius:4px;font-family:'Fira Code'">10</code> are the <strong>arguments</strong> — actual values passed when calling.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="section">
+    <h2>2️⃣ check_guess() — Getting an Answer Back</h2>
+    <p>This function compares the guess to the secret and <strong>returns</strong> the result — "correct", "too high", or "too low". <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">return</code> sends a value back to whoever called the function.</p>
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">fn2_check_guess.py — 🎮 Game Function 2</div></div>
+      <div class="code-area"><span class="kw">def</span> <span class="fn">check_guess</span>(<span class="var">guess</span>, <span class="var">secret</span>)<span class="op">:</span>
+    <span class="kw">if</span> <span class="var">guess</span> <span class="op">==</span> <span class="var">secret</span><span class="op">:</span>   <span class="kw">return</span> <span class="str">"correct"</span>
+    <span class="kw">elif</span> <span class="var">guess</span> <span class="op">></span> <span class="var">secret</span><span class="op">:</span>  <span class="kw">return</span> <span class="str">"too high"</span>
+    <span class="kw">else</span><span class="op">:</span>                 <span class="kw">return</span> <span class="str">"too low"</span>
+
+<span class="fn">print</span>(<span class="fn">check_guess</span>(<span class="num">70</span>, <span class="num">42</span>))   <span class="cmt"># → too high</span>
+<span class="fn">print</span>(<span class="fn">check_guess</span>(<span class="num">20</span>, <span class="num">42</span>))   <span class="cmt"># → too low</span>
+<span class="fn">print</span>(<span class="fn">check_guess</span>(<span class="num">42</span>, <span class="num">42</span>))   <span class="cmt"># → correct</span></div>
+    </div>
+    <button class="run-btn" onclick="runCode('out-ch7-2',['too high','too low','correct'])">▶ Run Code</button>
+    <div class="output-box" id="out-ch7-2"></div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="section">
+    <h2>3️⃣ show_hint() — Default Parameters</h2>
+    <p>This function prints the hint. We give <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">verbose</code> a <strong>default value</strong> of <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">False</code> so callers don't always need to pass it — but can override when they want extra detail.</p>
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">fn3_show_hint.py — 🎮 Game Function 3</div></div>
+      <div class="code-area"><span class="kw">def</span> <span class="fn">show_hint</span>(<span class="var">result</span>, <span class="var">guesses_left</span>, <span class="var">verbose</span><span class="op">=</span><span class="kw">False</span>)<span class="op">:</span>
+    <span class="kw">if</span> <span class="var">result</span> <span class="op">==</span> <span class="str">"too high"</span><span class="op">:</span>
+        <span class="fn">print</span>(<span class="str">"📉 Too high! Go lower."</span>)
+    <span class="kw">elif</span> <span class="var">result</span> <span class="op">==</span> <span class="str">"too low"</span><span class="op">:</span>
+        <span class="fn">print</span>(<span class="str">"📈 Too low! Go higher."</span>)
+    <span class="kw">else</span><span class="op">:</span>
+        <span class="fn">print</span>(<span class="str">"🎉 Correct!"</span>)
+    <span class="kw">if</span> <span class="var">verbose</span><span class="op">:</span>
+        <span class="fn">print</span>(<span class="str">f"  ({guesses_left} guesses remaining)"</span>)
+
+<span class="fn">show_hint</span>(<span class="str">"too high"</span>, <span class="num">7</span>)           <span class="cmt"># default — no extra detail</span>
+<span class="fn">show_hint</span>(<span class="str">"too low"</span>, <span class="num">6</span>, <span class="kw">True</span>)    <span class="cmt"># verbose=True — shows count</span></div>
+    </div>
+    <button class="run-btn" onclick="runCode('out-ch7-3',['📉 Too high! Go lower.','📈 Too low! Go higher.','  (6 guesses remaining)'])">▶ Run Code</button>
+    <div class="output-box" id="out-ch7-3"></div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="section">
+    <h2>4️⃣ show_result() — Functions Calling Functions</h2>
+    <p>The end-of-game screen calls <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">award_badge()</code> to decide which trophy to show. This is <strong>composition</strong> — small focused functions assembled by a larger one.</p>
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">fn4_show_result.py — 🎮 Game Function 4</div></div>
+      <div class="code-area"><span class="kw">def</span> <span class="fn">award_badge</span>(<span class="var">guesses_used</span>)<span class="op">:</span>
+    <span class="kw">if</span> <span class="var">guesses_used</span> <span class="op"><=</span> <span class="num">3</span><span class="op">:</span>   <span class="kw">return</span> <span class="str">"🏆 Gold — genius!"</span>
+    <span class="kw">elif</span> <span class="var">guesses_used</span> <span class="op"><=</span> <span class="num">6</span><span class="op">:</span> <span class="kw">return</span> <span class="str">"🥈 Silver — nice!"</span>
+    <span class="kw">else</span><span class="op">:</span>                   <span class="kw">return</span> <span class="str">"🥉 Bronze — keep practising!"</span>
+
+<span class="kw">def</span> <span class="fn">show_result</span>(<span class="var">won</span>, <span class="var">secret</span>, <span class="var">guesses_used</span>)<span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"=============================="</span>)
+    <span class="kw">if</span> <span class="var">won</span><span class="op">:</span>
+        <span class="fn">print</span>(<span class="str">f"🏆 You won in {guesses_used} guess(es)!"</span>)
+        <span class="fn">print</span>(<span class="str">"Badge:"</span>, <span class="fn">award_badge</span>(<span class="var">guesses_used</span>))  <span class="cmt"># calls award_badge!</span>
+    <span class="kw">else</span><span class="op">:</span>
+        <span class="fn">print</span>(<span class="str">f"💀 Game over! It was {secret}."</span>)
+    <span class="fn">print</span>(<span class="str">"=============================="</span>)
+
+<span class="fn">show_result</span>(<span class="kw">True</span>,  <span class="num">42</span>, <span class="num">2</span>)
+<span class="fn">show_result</span>(<span class="kw">False</span>, <span class="num">42</span>, <span class="num">10</span>)</div>
+    </div>
+    <button class="run-btn" onclick="runCode('out-ch7-4',['==============================','🏆 You won in 2 guess(es)!','Badge: 🏆 Gold — genius!','==============================','==============================','💀 Game over! It was 42.','=============================='])">▶ Run Code</button>
+    <div class="output-box" id="out-ch7-4"></div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="section">
+    <h2>5️⃣ show_history() — Functions With Lists</h2>
+    <p>The game stores every guess in a list. This function loops through it and prints a colour-coded recap.</p>
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">fn5_show_history.py — 🎮 Game Function 5</div></div>
+      <div class="code-area"><span class="kw">def</span> <span class="fn">show_history</span>(<span class="var">guesses</span>, <span class="var">secret</span>)<span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"📋 Your guess history:"</span>)
+    <span class="kw">for</span> <span class="var">i</span>, <span class="var">g</span> <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="var">guesses</span>, <span class="num">1</span>)<span class="op">:</span>
+        <span class="kw">if</span> <span class="var">g</span> <span class="op">></span> <span class="var">secret</span><span class="op">:</span>   <span class="var">label</span> <span class="op">=</span> <span class="str">"📉 too high"</span>
+        <span class="kw">elif</span> <span class="var">g</span> <span class="op"><</span> <span class="var">secret</span><span class="op">:</span> <span class="var">label</span> <span class="op">=</span> <span class="str">"📈 too low"</span>
+        <span class="kw">else</span><span class="op">:</span>             <span class="var">label</span> <span class="op">=</span> <span class="str">"✅ correct!"</span>
+        <span class="fn">print</span>(<span class="str">f"  Round {i}: {g:>3} → {label}"</span>)
+
+<span class="fn">show_history</span>([<span class="num">70</span>, <span class="num">35</span>, <span class="num">50</span>, <span class="num">42</span>], <span class="num">42</span>)</div>
+    </div>
+    <button class="run-btn" onclick="runCode('out-ch7-5',['📋 Your guess history:','  Round 1:  70 → 📉 too high','  Round 2:  35 → 📈 too low','  Round 3:  50 → 📉 too high','  Round 4:  42 → ✅ correct!'])">▶ Run Code</button>
+    <div class="output-box" id="out-ch7-5"></div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="section">
+    <h2>6️⃣ play_game() — The Complete Game Assembled</h2>
+    <p>This is the moment everything clicks. <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">play_game()</code> calls every function we built — in the right order. Notice the comments linking back to earlier chapters: this is the payoff for all that work.</p>
+    <div class="code-editor">
+      <div class="editor-topbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="editor-label">fn6_play_game.py — 🎮 THE COMPLETE GAME</div></div>
+      <div class="code-area"><span class="kw">import</span> <span class="var">random</span>
+
+<span class="kw">def</span> <span class="fn">show_welcome</span>(<span class="var">name</span>, <span class="var">max_g</span>)<span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">f"Welcome, {name}! Guess 1–100 in {max_g} tries.
+"</span>)
+
+<span class="kw">def</span> <span class="fn">check_guess</span>(<span class="var">guess</span>, <span class="var">secret</span>)<span class="op">:</span>
+    <span class="kw">if</span>   <span class="var">guess</span> <span class="op">==</span> <span class="var">secret</span><span class="op">:</span> <span class="kw">return</span> <span class="str">"correct"</span>
+    <span class="kw">elif</span> <span class="var">guess</span> <span class="op">></span>  <span class="var">secret</span><span class="op">:</span> <span class="kw">return</span> <span class="str">"too high"</span>
+    <span class="kw">else</span><span class="op">:</span>               <span class="kw">return</span> <span class="str">"too low"</span>
+
+<span class="kw">def</span> <span class="fn">show_hint</span>(<span class="var">result</span>, <span class="var">left</span>)<span class="op">:</span>
+    <span class="var">arrow</span> <span class="op">=</span> <span class="str">"📉"</span> <span class="kw">if</span> <span class="var">result</span> <span class="op">==</span> <span class="str">"too high"</span> <span class="kw">else</span> <span class="str">"📈"</span>
+    <span class="fn">print</span>(<span class="str">f"  {arrow} {result.capitalize()}! {left} guess(es) left."</span>)
+
+<span class="kw">def</span> <span class="fn">award_badge</span>(<span class="var">n</span>)<span class="op">:</span>
+    <span class="kw">return</span> <span class="str">"🏆 Gold"</span> <span class="kw">if</span> <span class="var">n</span><span class="op"><=</span><span class="num">3</span> <span class="kw">else</span> <span class="str">"🥈 Silver"</span> <span class="kw">if</span> <span class="var">n</span><span class="op"><=</span><span class="num">6</span> <span class="kw">else</span> <span class="str">"🥉 Bronze"</span>
+
+<span class="kw">def</span> <span class="fn">show_result</span>(<span class="var">won</span>, <span class="var">secret</span>, <span class="var">used</span>)<span class="op">:</span>
+    <span class="kw">if</span> <span class="var">won</span><span class="op">:</span> <span class="fn">print</span>(<span class="str">f"🏆 Won in {used}! Badge: {award_badge(used)}"</span>)
+    <span class="kw">else</span><span class="op">:</span>  <span class="fn">print</span>(<span class="str">f"💀 Game over! It was {secret}."</span>)
+
+<span class="cmt"># ── Master function — assembles everything ──────────</span>
+<span class="kw">def</span> <span class="fn">play_game</span>(<span class="var">player_name</span><span class="op">=</span><span class="str">"Player"</span>, <span class="var">max_guesses</span><span class="op">=</span><span class="num">10</span>)<span class="op">:</span>
+    <span class="var">secret</span>  <span class="op">=</span> <span class="var">random</span>.<span class="fn">randint</span>(<span class="num">1</span>, <span class="num">100</span>)  <span class="cmt"># Ch5: variable (int)</span>
+    <span class="var">left</span>    <span class="op">=</span> <span class="var">max_guesses</span>              <span class="cmt"># Ch5: variable (int)</span>
+    <span class="var">won</span>     <span class="op">=</span> <span class="kw">False</span>                    <span class="cmt"># Ch5: variable (bool)</span>
+    <span class="var">history</span> <span class="op">=</span> []
+
+    <span class="fn">show_welcome</span>(<span class="var">player_name</span>, <span class="var">max_guesses</span>)  <span class="cmt"># Fn 1</span>
+
+    <span class="kw">while</span> <span class="var">left</span> <span class="op">></span> <span class="num">0</span> <span class="kw">and</span> <span class="kw">not</span> <span class="var">won</span><span class="op">:</span>        <span class="cmt"># Ch6: while loop</span>
+        <span class="var">guess</span> <span class="op">=</span> <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Your guess: "</span>))  <span class="cmt"># Ch5: type casting</span>
+        <span class="var">history</span>.<span class="fn">append</span>(<span class="var">guess</span>)
+        <span class="var">result</span> <span class="op">=</span> <span class="fn">check_guess</span>(<span class="var">guess</span>, <span class="var">secret</span>)  <span class="cmt"># Fn 2</span>
+        <span class="kw">if</span> <span class="var">result</span> <span class="op">==</span> <span class="str">"correct"</span><span class="op">:</span>          <span class="cmt"># Ch6: if/else</span>
+            <span class="var">won</span> <span class="op">=</span> <span class="kw">True</span>
+        <span class="kw">else</span><span class="op">:</span>
+            <span class="var">left</span> <span class="op">-=</span> <span class="num">1</span>
+            <span class="fn">show_hint</span>(<span class="var">result</span>, <span class="var">left</span>)          <span class="cmt"># Fn 3</span>
+
+    <span class="fn">show_result</span>(<span class="var">won</span>, <span class="var">secret</span>, <span class="fn">len</span>(<span class="var">history</span>))  <span class="cmt"># Fn 4</span>
+
+<span class="fn">play_game</span>(<span class="str">"Alex"</span>)   <span class="cmt"># one line starts the whole game!</span></div>
+    </div>
+    <div class="note-box">
+      <p>💡 <strong>Every concept from Chapters 5, 6, and 7 is in this one function.</strong> Variables → while loop + if/else → functions calling functions. You built each piece step by step — now see them work together. Head to Chapter 8 to play!</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="section">
+    <h2>📋 Functions Cheat Sheet</h2>
+    <div style="background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);overflow:hidden;margin:1rem 0">
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+        <thead>
+          <tr style="background:rgba(108,99,255,.15);border-bottom:1px solid rgba(108,99,255,.2)">
+            <th style="padding:.9rem 1.1rem;text-align:left;font-weight:800;color:var(--purple)">Concept</th>
+            <th style="padding:.9rem 1.1rem;text-align:left;font-weight:800;color:var(--purple)">Used in our game as</th>
+            <th style="padding:.9rem 1.1rem;text-align:left;font-weight:800;color:var(--purple)">What it does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)"><td style="padding:.8rem 1.1rem;color:var(--teal);font-weight:700">Define</td><td style="padding:.8rem 1.1rem;font-family:'Fira Code';font-size:.78rem;color:#C3E88D">def play_game():</td><td style="padding:.8rem 1.1rem;color:var(--muted)">Creates the function</td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)"><td style="padding:.8rem 1.1rem;color:var(--teal);font-weight:700">Call</td><td style="padding:.8rem 1.1rem;font-family:'Fira Code';font-size:.78rem;color:#C3E88D">play_game("Alex")</td><td style="padding:.8rem 1.1rem;color:var(--muted)">Runs it</td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)"><td style="padding:.8rem 1.1rem;color:var(--teal);font-weight:700">Parameter</td><td style="padding:.8rem 1.1rem;font-family:'Fira Code';font-size:.78rem;color:#C3E88D">def f(guess, secret):</td><td style="padding:.8rem 1.1rem;color:var(--muted)">Input placeholder</td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)"><td style="padding:.8rem 1.1rem;color:var(--teal);font-weight:700">Return</td><td style="padding:.8rem 1.1rem;font-family:'Fira Code';font-size:.78rem;color:#C3E88D">return "too high"</td><td style="padding:.8rem 1.1rem;color:var(--muted)">Sends value back</td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)"><td style="padding:.8rem 1.1rem;color:var(--teal);font-weight:700">Default</td><td style="padding:.8rem 1.1rem;font-family:'Fira Code';font-size:.78rem;color:#C3E88D">def f(name, max=10):</td><td style="padding:.8rem 1.1rem;color:var(--muted)">Optional argument</td></tr>
+          <tr><td style="padding:.8rem 1.1rem;color:var(--teal);font-weight:700">Compose</td><td style="padding:.8rem 1.1rem;font-family:'Fira Code';font-size:.78rem;color:#C3E88D">show_result → award_badge</td><td style="padding:.8rem 1.1rem;color:var(--muted)">Functions calling functions</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<div class="quiz" id="quiz-7"><div class="quiz-q">🎯 What keyword do you use to CREATE a function in Python?</div><div class="quiz-opts"><div class="quiz-opt" onclick="answerQuiz('quiz-7',0,7)">A) create</div><div class="quiz-opt" onclick="answerQuiz('quiz-7',1,7)">B) function</div><div class="quiz-opt" onclick="answerQuiz('quiz-7',2,7)">C) def</div><div class="quiz-opt" onclick="answerQuiz('quiz-7',3,7)">D) make</div></div><div class="quiz-feedback" id="qf-quiz-7"></div></div>
 
   <div class="quiz" id="quiz-7b">
     <div class="quiz-q">🎯 What does the <code style="background:var(--card2);padding:2px 8px;border-radius:5px;font-family:'Fira Code'">return</code> keyword do in a function?</div>
@@ -2420,9 +2825,7 @@
 
   <div class="ch-nav"><button class="ch-nav-btn" onclick="showChapter(6)">← Chapter 6</button><button class="ch-nav-btn next-btn" onclick="showChapter(8)">Chapter 8: Final Project! →</button></div>
 </div>
-</div>
-
-<div class="page" id="page-ch8">
+</div><div class="page" id="page-ch8">
 <div class="chapter-layout">
   <div class="chapter-header"><div class="chapter-eyebrow">🚀 Chapter 8 of 8 — FINAL PROJECT</div><h1 class="chapter-title" style="background:linear-gradient(135deg,#FFD166,#FF6B35,#EF476F);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Build Your Game! 🎮</h1><p class="chapter-intro">Everything you've learned — hardware, internet, algorithms, variables, loops, functions — comes together in one real Python game. Let's build it!</p></div>
   <div class="section"><h2>🎮 Play the Number Guessing Game</h2>
@@ -2818,32 +3221,56 @@ function runCode(outputId,lines){
   show();
 }
 function runLoopDemo(){
+  // Simulate 3 guesses in the guessing game loop (Ch6 demo)
   const box=document.getElementById('out-ch6-2');
   box.textContent=''; box.classList.add('visible');
   const items=document.querySelectorAll('.loop-item');
   items.forEach(it=>{it.classList.remove('active','done');});
-  let lap=1;
+  const secret=42;
+  const guesses=[70,20,42];
+  const hints=['📉 Too high!','📈 Too low!','🎉 Correct!'];
+  let step=0;
   function next(){
-    if(lap<=5){
-      items[lap-1].classList.add('active');
-      if(lap>1){items[lap-2].classList.remove('active');items[lap-2].classList.add('done');}
-      box.textContent+='Lap number: '+lap+'\n'; lap++;
-      setTimeout(next,500);
+    if(step<guesses.length){
+      // activate current guess-left counter
+      if(step<items.length) {
+        if(step>0) items[step-1].classList.remove('active');
+        items[step].classList.add('active');
+      }
+      const left=3-step-1;
+      box.textContent+='Guesses left: '+(3-step)+'\n';
+      box.textContent+='Your guess: '+guesses[step]+'\n';
+      box.textContent+=hints[step]+'\n';
+      if(guesses[step]!==secret) box.textContent+='Guesses left after: '+left+'\n';
+      box.textContent+='\n';
+      step++;
+      setTimeout(next, guesses[step-1]===secret ? 400 : 700);
     } else {
-      items[4].classList.remove('active'); items[4].classList.add('done');
-      setTimeout(()=>{box.textContent+='Race complete! 🏁\n';},200);
+      items[guesses.length-1].classList.remove('active');
+      items[guesses.length-1].classList.add('done');
+      box.textContent+='🏆 You won!';
     }
   }
   next();
 }
-function runGreeting(){
-  const _raw=document.getElementById('input-name').value||'Coder';const name=_raw.replace(/[<>&"']/g,'').substring(0,30)||'Coder';
+function runInputDemo(){
+  const raw=document.getElementById('input-guess-ch5').value||'42';
+  const num=parseInt(raw)||42;
   const box=document.getElementById('out-ch5-3');
   box.classList.add('visible'); box.textContent='';
-  const lines=['Hey, '+name+'! Welcome to CodeQuest!','You are learning Python — awesome! 🐍'];
+  const lines=[
+    "<class 'str'> before casting",
+    "<class 'int'>  after casting",
+    'Your guess: '+num,
+    'One less: '+(num-1)
+  ];
   let i=0;
-  function show(){if(i<lines.length){box.textContent+=lines[i]+'\n';i++;setTimeout(show,200);}}
+  function show(){if(i<lines.length){box.textContent+=lines[i]+'\n';i++;setTimeout(show,180);}}
   show();
+}
+function runGreeting(){
+  // kept for any legacy reference — now points to ch5-3 via runInputDemo
+  runInputDemo();
 }
 function showBugFix(){document.getElementById('bug-fix').style.display='block';}
 
