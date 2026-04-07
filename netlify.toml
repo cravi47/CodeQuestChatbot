@@ -1,0 +1,16 @@
+# CodeQuest — Netlify Configuration
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  publish = "."          # serve index.html from the root folder
+  functions = "netlify/functions"   # where our serverless functions live
+
+[functions]
+  node_bundler = "esbuild"         # modern, fast bundler — required for ES modules
+
+[[headers]]
+  for = "/api/chat"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options        = "DENY"
+    Cache-Control          = "no-store"   # never cache AI responses
